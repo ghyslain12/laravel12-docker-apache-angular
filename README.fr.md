@@ -14,6 +14,7 @@ Application CRUD complète avec API Laravel 12 (JWT), front-end Angular 19 et My
 - **Architecture Docker** complète avec Apache
 - **Filament v4** : Panneau d'administration complet et élégant (Alternative moderne à Laravel Nova)
 - **Redis Cache** : Optimisation des performances avec mise en cache automatique via **Observers**.
+- **CI/CD GitHub Actions** : Pipeline automatisé testant le Backend (Pest) et le Frontend (Angular) avec services MySQL & Redis.
 
 ## 📋 Stack Technique
 
