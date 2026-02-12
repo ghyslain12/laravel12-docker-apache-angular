@@ -31,6 +31,5 @@ Thumbs.db
 /project/nbproject
 /project/resources/crud-angular/nbproject/
 /nbproject/
-/config/
 /docker/db-data/
 /docker/redis-data/
