@@ -36,12 +36,14 @@ services:
   # Laravel Apache server container
   app:
     build:
-      context: ./docker
+      context: .
+      dockerfile: ./docker/Dockerfile
     container_name: laravel_app
     restart: on-failure
     volumes:
       - ./docker/vhosts:/etc/apache2/sites-enabled
       - ./project:/var/www
+      - /var/www/vendor
     ports:
       - "8741:8741"
       - "5173:5173" # for blade frontend

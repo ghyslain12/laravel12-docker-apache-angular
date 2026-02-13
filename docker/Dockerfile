@@ -32,7 +32,20 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www
 
-# 8. Octane Configuration
+# 8. Copier les fichiers de dépendances depuis la racine du contexte
+COPY project/composer.json project/composer.lock ./
+
+# 9. Installer les dépendances
+RUN composer install --no-scripts --no-autoloader
+
+# 10. Copier tout le dossier project
+COPY project/ .
+
+# 11. Finir l'autoloader et permissions
+RUN composer dump-autoload --optimize \
+    && chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+
+# 12. Octane Configuration
 EXPOSE 8000
 
 # Start Octane avec Swoole
