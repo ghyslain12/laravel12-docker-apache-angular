@@ -14,7 +14,7 @@ class ClientController extends Controller
     public function index(): JsonResponse
     {
         $customers = Cache::remember('customers_list', 3600, function () {
-            return Customer::with('user')->get();
+            return Customer::with('user')->get()->toArray();
         });
         return response()->json($customers);
     }

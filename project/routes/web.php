@@ -25,3 +25,7 @@ Route::get('/crud-angular/{any?}', function () {
 Route::get('/test-frontend', function () {
     return view('app');
 });
+
+Route::get('/test-vitesse', function () {
+    return 'ok';
+});

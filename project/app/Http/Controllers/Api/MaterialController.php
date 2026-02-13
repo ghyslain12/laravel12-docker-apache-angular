@@ -14,7 +14,7 @@ class MaterialController extends Controller
     public function index(): JsonResponse
     {
         $materials = Cache::remember('materials_list', 3600, function () {
-            return Material::all();
+            return Material::all()->toArray();
         });
 
         return response()->json($materials);

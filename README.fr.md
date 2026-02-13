@@ -15,11 +15,14 @@ Application CRUD complète avec API Laravel 12 (JWT), front-end Angular 19 et My
 - **Filament v4** : Panneau d'administration complet et élégant (Alternative moderne à Laravel Nova)
 - **Redis Cache** : Optimisation des performances avec mise en cache automatique via **Observers**.
 - **CI/CD GitHub Actions** : Pipeline automatisé testant le Backend (Pest) et le Frontend (Angular) avec services MySQL & Redis.
+- **Laravel Octane (Swoole)** : Intégration d'un serveur haute performance qui maintient l'application en RAM, offrant des temps de réponse quasi instantanés en éliminant les latences d'accès disque.
+- **Laravel Pulse** : Tableau de bord de monitoring en temps réel pour surveiller la santé du système, les requêtes lentes et l'efficacité du cache d'un seul coup d'œil.
+- **CORS** : Gestion optimisée du Cross-Origin Resource Sharing pour sécuriser les échanges entre le backend Laravel et le frontend Angular.
 
 ## 📋 Stack Technique
 
 **Back-end:**
-- Laravel 12 avec API REST
+- Laravel 12 avec API REST, Laravel Pulse/Octane/Filament/Cors
 - PHP 8.4
 - Authentification JWT
 - Tests avec Pest
@@ -89,14 +92,15 @@ docker-compose logs -f
 
 ## 🌐 Services Disponibles
 
-| Service | URL | Description |
-|---------|-----|-------------|
-| **Angular** | http://localhost:4200 | Interface utilisateur |
+| Service | URL | Description           |
+|---------|-----|-----------------------|
+| **Angular** | http://localhost:4200 | Interface utilisateur|
 | **Laravel API** | http://localhost:8741/api | API REST |
 | **Swagger** | http://localhost:8741/api/documentation | Documentation API interactive |
 | **phpMyAdmin** | http://localhost:8080 | Gestion base de données |
 | **Redis** | http://localhost:6379 | Serveur de cache haute performance |
 | **Filament Admin** | http://localhost:8741/admin | Panneau d'administration |
+| **Laravel Pulse**  | http://localhost:8741/pulse | Pulse tableau de bord |
 
 ## 🔐 Authentification JWT
 
@@ -187,6 +191,9 @@ docker exec -it laravel_app sh -c "php artisan l5-swagger:generate"
 
 ![Filament Admin](ressources/filament.png)
 *Panel d'administration*
+
+![Pulse Dashboard](ressources/pulse.png)
+*Pulse Dashboard*
 
 ## 🐛 Dépannage
 

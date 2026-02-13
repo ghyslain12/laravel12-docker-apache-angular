@@ -19,9 +19,16 @@ class JwtMiddleware
         }
 
         try {
-            $key = env('JWT_SECRET');
-            $decoded = JWT::decode($token, new Key($key, 'HS256')); // Décodage du token
-            $request->attributes->add(['user' => (array) $decoded]); // Optionnel : Ajoute les données décodées à la requête
+            $key = config('jwt.secret');
+
+            if (!$key) {
+                return response()->json(['error' => 'Configuration serveur manquante (JWT_SECRET)'], 500);
+            }
+
+            $decoded = JWT::decode($token, new Key($key, 'HS256'));
+
+            $request->attributes->add(['user_data' => (array) $decoded]);
+
         } catch (Exception $e) {
             return response()->json(['error' => 'Token invalide ou expiré'], 401);
         }

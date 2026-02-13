@@ -14,7 +14,7 @@ class SaleController extends Controller
     public function index(): JsonResponse
     {
         $sales = Cache::remember('sales_list', 3600, function () {
-            return Sale::with(['customer', 'materials', 'tickets'])->get();
+            return Sale::with(['customer', 'materials', 'tickets'])->get()->toArray();
         });
         return response()->json($sales);
     }

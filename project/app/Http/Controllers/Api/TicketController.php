@@ -14,7 +14,7 @@ class TicketController extends Controller
     public function index(): JsonResponse
     {
         $tickets = Cache::remember('tickets_list', 3600, function () {
-            return Ticket::with('sales')->get();
+            return Ticket::with('sales')->get()->toArray();
         });
         return response()->json($tickets);
     }

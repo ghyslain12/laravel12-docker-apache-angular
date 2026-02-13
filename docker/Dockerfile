@@ -1,25 +1,25 @@
 FROM php:8.4-apache
 
-# 1. Configuration Apache
+# 1. Apache Configuration
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     && a2enmod rewrite
 
-# 2. Installations de base AVEC libicu-dev
+# 2. Base installations
 RUN apt-get update && apt-get install -y \
     git curl libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
     libxml2-dev libonig-dev libcurl4-openssl-dev unzip \
-    libicu-dev  # <-- AJOUTÉ ICI
+    libicu-dev libpcre2-dev $PHPIZE_DEPS
 
-# 3. Extensions PHP (sans intl pour l'instant)
+# 3. PHP Extensions (AJOUT DE PCNTL)
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install \
-    pdo pdo_mysql zip gd mbstring xml curl bcmath
+    pdo pdo_mysql zip gd mbstring xml curl bcmath intl pcntl
 
-# 4. Extension intl séparément
-RUN docker-php-ext-configure intl \
-    && docker-php-ext-install intl
+# 4. Swoole, Redis et OPcache
+RUN pecl install swoole redis \
+    && docker-php-ext-enable swoole redis opcache
 
-# 5. Node.js
+# 5. Node.js 20
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs
 
@@ -31,3 +31,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www
+
+# 8. Octane Configuration
+EXPOSE 8000
+
+# Start Octane avec Swoole
+CMD ["php", "artisan", "octane:start", "--server=swoole", "--host=0.0.0.0", "--port=8741"]

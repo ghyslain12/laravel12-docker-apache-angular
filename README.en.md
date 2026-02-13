@@ -15,11 +15,14 @@ Complete CRUD application with Laravel 12 API (JWT), Angular 19 front-end and My
 - **Filament v4**: Elegant administration panel (Modern alternative to Laravel Nova).
 - **Redis Cache**: Performance optimization with automatic caching via **Observers**.
 - **GitHub Actions CI/CD**: Automated pipeline testing both Backend (Pest) and Frontend (Angular) using MySQL & Redis services.
+- **Laravel Octane (Swoole)** : High-performance server integration to keep the application in RAM, delivering near-instantaneous response times by bypassing disk I/O.
+- **Laravel Pulse** : Real-time performance monitoring dashboard to track system health, slow queries, and cache usage at a glance.
+- **CORS** : Optimized Cross-Origin Resource Sharing management for secure communication between Laravel backend and Angular frontend.
 
 ## 📋 Tech Stack
 
 **Back-end:**
-- Laravel 12 with REST API
+- Laravel 12 with REST API, Laravel Pulse/Octane/Filament/Cors
 - PHP 8.4
 - JWT Authentication
 - Testing with Pest
@@ -89,14 +92,15 @@ docker-compose logs -f
 
 ## 🌐 Available Services
 
-| Service | URL | Description |
-|---------|-----|-------------|
-| **Angular** | http://localhost:4200 | User interface |
-| **Laravel API** | http://localhost:8741/api | REST API |
-| **Swagger** | http://localhost:8741/api/documentation | Interactive API documentation |
-| **phpMyAdmin** | http://localhost:8080 | Database management |
-| **Redis** | http://localhost:6379 | High-performance caching server |
-| **Filament Admin** | http://localhost:8741/admin | Administration panel |
+| Service            | URL                                     | Description                     |
+|--------------------|-----------------------------------------|---------------------------------|
+| **Angular**        | http://localhost:4200                   | User interface                  |
+| **Laravel API**    | http://localhost:8741/api               | REST API                        |
+| **Swagger**        | http://localhost:8741/api/documentation | Interactive API documentation   |
+| **phpMyAdmin**     | http://localhost:8080                   | Database management             |
+| **Redis**          | http://localhost:6379                   | High-performance caching server |
+| **Filament Admin** | http://localhost:8741/admin             | Administration panel            |
+| **Laravel Pulse**  | http://localhost:8741/pulse             | Pulse dashboard                 |
 
 ## 🔐 JWT Authentication
 
@@ -188,6 +192,9 @@ docker exec -it laravel_app sh -c "php artisan l5-swagger:generate"
 
 ![Filament Admin](ressources/filament.png)
 *Administration panel*
+
+![Pulse Dashboard](ressources/pulse.png)
+*Pulse Dashboard*
 
 ## 🐛 Troubleshooting
 

@@ -14,7 +14,7 @@ class UtilisateurController extends Controller
     public function index(): JsonResponse
     {
         $users = Cache::remember('users_list', 3600, function () {
-            return User::all();
+            return User::all()->toArray();
         });
         return response()->json($users);
     }

@@ -43,7 +43,7 @@ services:
       - ./docker/vhosts:/etc/apache2/sites-enabled
       - ./project:/var/www
     ports:
-      - "8741:80"
+      - "8741:8741"
       - "5173:5173" # for blade frontend
     depends_on:
       - db
